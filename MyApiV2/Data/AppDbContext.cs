@@ -11,5 +11,6 @@ public class AppDbContext : DbContext
     {
         optionsBuilder.UseSqlite(connectionString:"Data Source=app.db");
         base.OnConfiguring(optionsBuilder);
+        base.OnConfiguring(optionsBuilder);
     }
 }
