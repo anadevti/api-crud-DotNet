@@ -2,9 +2,14 @@
 
 public static class StudantsEndpoints
 {
-    public static void AddStudantsEndpoints(this WebApplication app) // static por que ela nao vai ser instanciada.
+    public static void AddStudantsEndpoints(this WebApplication app)
     {
-        app.MapGet("studants", 
-            () => new Studant("Aninha"));
+        var routesStudants = app.MapGroup("/studants");
+        
+        routesStudants.MapPost("", (AddStudantRequest request) => 
+        {
+            var studant = new Studant(request.Name);
+            return Results.Created($"/studants/{studant.Id}", studant);
+        });
     }
 }
